@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Inscripción - Regreso Peregrinación</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f5f7;
+      color: #222;
+    }
+
+    .encabezado {
+      background: #1f3c5b;
+      color: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .encabezado h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    .encabezado p {
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .contenedor {
+      max-width: 750px;
+      margin: 30px auto;
+      padding: 0 15px 50px;
+    }
+
+    .tarjeta {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1f3c5b;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    .precio {
+      margin-top: 20px;
+      padding: 15px;
+      background: #eef4f8;
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    .integrante {
+      border-top: 1px solid #ddd;
+      margin-top: 20px;
+      padding-top: 15px;
+    }
+
+    .integrante:first-child {
+      border-top: none;
+    }
+
+    .responsable {
+      display: inline-block;
+      background: #e8eef4;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 13px;
+      margin-left: 5px;
+    }
+
+    .opciones-pago {
+      display: grid;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .opcion-pago {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .opcion-pago input {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    .transferencia {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      background: #f6f6f6;
+      border-radius: 8px;
+    }
+
+    .alias {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .total {
+      font-size: 23px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: #1f3c5b;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .aviso {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    #mensajeFinal {
+      display: none;
+      background: #e9f5ec;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="encabezado">
+    <h1>Regreso Peregrinación a Luján</h1>
+    <p>Reserva de transporte</p>
+  </div>
+
+  <main class="contenedor">
+
+    <div class="tarjeta">
+      <h2>Inscripción</h2>
+
+      <p class="aviso">
+        Completá los datos para reservar tu lugar de regreso.
+        La reserva quedará confirmada únicamente una vez acreditado el pago.
+      </p>
+    </div>
+
+    <!-- DESTINO -->
+
+    <div class="tarjeta">
+      <h2>1. Elegí tu destino</h2>
+
+      <label for="destino">Destino</label>
+
+      <select id="destino" onchange="actualizarPrecio()">
+        <option value="">Seleccionar destino</option>
+        <option value="12000">Capital - $12.000</option>
+        <option value="9000">La Reja - $9.000</option>
+        <option value="35000">Mendoza - $35.000</option>
+      </select>
+
+      <div class="precio">
+        Precio por persona:
+        <strong id="precioPersona">-</strong>
+      </div>
+    </div>
+
+
+    <!-- CANTIDAD -->
+
+    <div class="tarjeta">
+      <h2>2. ¿Cuántas personas viajan?</h2>
+
+      <label for="cantidad">Cantidad de pasajeros</label>
+
+      <select id="cantidad" onchange="crearPasajeros()">
+        <option value="1">1 persona</option>
+        <option value="2">2 personas</option>
+        <option value="3">3 personas</option>
+        <option value="4">4 personas</option>
+        <option value="5">5 personas</option>
+        <option value="6">6 personas</option>
+        <option value="7">7 personas</option>
+        <option value="8">8 personas</option>
+      </select>
+
+      <p class="aviso">
+        Las personas incluidas en una misma inscripción serán consideradas
+        un grupo y se intentará mantenerlas juntas en el mismo micro.
+      </p>
+    </div>
+
+
+    <!-- RESPONSABLE -->
+
+    <div class="tarjeta">
+      <h2>3. Datos del responsable</h2>
+
+      <label>Teléfono</label>
+      <input type="tel" id="telefono" placeholder="Ej.: 11 1234 5678">
+
+      <label>Correo electrónico</label>
+      <input type="email" id="correo" placeholder="nombre@correo.com">
+
+      <p class="aviso">
+        A este correo enviaremos la confirmación y el QR del grupo.
+      </p>
+    </div>
+
+
+    <!-- PASAJEROS -->
+
+    <div class="tarjeta">
+      <h2>4. Datos de los pasajeros</h2>
+
+      <div id="pasajeros"></div>
+    </div>
+
+
+    <!-- PAGO -->
+
+    <div class="tarjeta">
+      <h2>5. Forma de pago</h2>
+
+      <div class="opciones-pago">
+
+        <label class="opcion-pago">
+          <input
+            type="radio"
+            name="pago"
+            value="mercadopago"
+            onchange="cambiarPago()"
+          >
+          Mercado Pago
+        </label>
+
+        <label class="opcion-pago">
+          <input
+            type="radio"
+            name="pago"
+            value="transferencia"
+            onchange="cambiarPago()"
+          >
+          Transferencia bancaria
+        </label>
+
+      </div>
+
+      <div id="datosTransferencia" class="transferencia">
+
+        <strong>Datos para realizar la transferencia</strong>
+
+        <p>Alias:</p>
+
+        <div class="alias">
+          PEREGRINACION.LUJAN
+        </div>
+
+        <p class="aviso">
+          Una vez realizada la transferencia, subí el comprobante.
+          La reserva quedará pendiente hasta que un administrador verifique
+          el pago.
+        </p>
+
+        <label>Comprobante de transferencia</label>
+        <input type="file" accept="image/*,.pdf">
+
+      </div>
+
+      <div class="total">
+        Total: <span id="total">$0</span>
+      </div>
+
+      <button onclick="continuarInscripcion()">
+        CONTINUAR
+      </button>
+
+      <div id="mensajeFinal">
+        <strong>✓ Datos cargados correctamente</strong>
+
+        <p>
+          Esta es una versión de prueba. Más adelante conectaremos
+          esta pantalla con el sistema de pagos, la base de datos
+          y la generación automática del QR.
+        </p>
+      </div>
+
+    </div>
+
+  </main>
+
+
+<script>
+
+  let precioActual = 0;
+
+
+  function actualizarPrecio() {
+
+    const destino = document.getElementById("destino");
+
+    precioActual = Number(destino.value);
+
+    if (precioActual === 0) {
+      document.getElementById("precioPersona").innerText = "-";
+    } else {
+      document.getElementById("precioPersona").innerText =
+        "$" + precioActual.toLocaleString("es-AR");
+    }
+
+    actualizarTotal();
+  }
+
+
+  function actualizarTotal() {
+
+    const cantidad =
+      Number(document.getElementById("cantidad").value);
+
+    const total = precioActual * cantidad;
+
+    document.getElementById("total").innerText =
+      "$" + total.toLocaleString("es-AR");
+  }
+
+
+  function crearPasajeros() {
+
+    const cantidad =
+      Number(document.getElementById("cantidad").value);
+
+    const contenedor =
+      document.getElementById("pasajeros");
+
+    contenedor.innerHTML = "";
+
+    for (let i = 1; i <= cantidad; i++) {
+
+      const pasajero =
+        document.createElement("div");
+
+      pasajero.className = "integrante";
+
+      pasajero.innerHTML = `
+        <h3>
+          Pasajero ${i}
+          ${i === 1
+            ? '<span class="responsable">RESPONSABLE</span>'
+            : ''}
+        </h3>
+
+        <label>Nombre</label>
+        <input type="text" placeholder="Nombre">
+
+        <label>Apellido</label>
+        <input type="text" placeholder="Apellido">
+
+        <label>DNI</label>
+        <input type="text" placeholder="DNI">
+      `;
+
+      contenedor.appendChild(pasajero);
+    }
+
+    actualizarTotal();
+  }
+
+
+  function cambiarPago() {
+
+    const pago =
+      document.querySelector(
+        'input[name="pago"]:checked'
+      );
+
+    const transferencia =
+      document.getElementById(
+        "datosTransferencia"
+      );
+
+    if (
+      pago &&
+      pago.value === "transferencia"
+    ) {
+      transferencia.style.display = "block";
+    } else {
+      transferencia.style.display = "none";
+    }
+  }
+
+
+  function continuarInscripcion() {
+
+    const destino =
+      document.getElementById("destino").value;
+
+    if (!destino) {
+      alert("Primero tenés que elegir un destino.");
+      return;
+    }
+
+    const pago =
+      document.querySelector(
+        'input[name="pago"]:checked'
+      );
+
+    if (!pago) {
+      alert("Elegí una forma de pago.");
+      return;
+    }
+
+    document.getElementById(
+      "mensajeFinal"
+    ).style.display = "block";
+  }
+
+
+  crearPasajeros();
+
+</script>
+
+</body>
+</html>
