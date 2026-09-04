@@ -1,462 +1,1325 @@
-<!DOCTYPE html>
+
+     <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Inscripción - Regreso Peregrinación</title>
+<title>Sistema de Micros</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f5f7;
-      color: #222;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f5f7;
+  color: #222;
+}
 
-    .encabezado {
-      background: #1f3c5b;
-      color: white;
-      padding: 35px 20px;
-      text-align: center;
-    }
+header {
+  background: #173b5e;
+  color: white;
+  padding: 25px;
+}
 
-    .encabezado h1 {
-      margin: 0 0 10px;
-      font-size: 30px;
-    }
+header h1 {
+  margin: 0;
+}
 
-    .encabezado p {
-      margin: 0;
-      opacity: 0.9;
-    }
+header p {
+  margin: 6px 0 0;
+  opacity: .85;
+}
 
-    .contenedor {
-      max-width: 750px;
-      margin: 30px auto;
-      padding: 0 15px 50px;
-    }
+.contenedor {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 15px 60px;
+}
 
-    .tarjeta {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    }
+.tarjeta {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+}
 
-    h2 {
-      margin-top: 0;
-      color: #1f3c5b;
-    }
+h2 {
+  margin-top: 0;
+  color: #173b5e;
+}
 
-    label {
-      display: block;
-      margin-top: 16px;
-      margin-bottom: 6px;
-      font-weight: bold;
-    }
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 7px;
-      font-size: 16px;
-    }
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 7px;
+  font-size: 16px;
+}
 
-    .precio {
-      margin-top: 20px;
-      padding: 15px;
-      background: #eef4f8;
-      border-radius: 8px;
-      font-size: 18px;
-    }
+button {
+  border: none;
+  border-radius: 7px;
+  padding: 13px 18px;
+  cursor: pointer;
+  font-size: 15px;
+}
 
-    .integrante {
-      border-top: 1px solid #ddd;
-      margin-top: 20px;
-      padding-top: 15px;
-    }
+.botonPrincipal {
+  background: #173b5e;
+  color: white;
+  width: 100%;
+  margin-top: 20px;
+}
 
-    .integrante:first-child {
-      border-top: none;
-    }
+.botonVerde {
+  background: #278447;
+  color: white;
+}
 
-    .responsable {
-      display: inline-block;
-      background: #e8eef4;
-      padding: 4px 8px;
-      border-radius: 5px;
-      font-size: 13px;
-      margin-left: 5px;
-    }
+.botonRojo {
+  background: #b83838;
+  color: white;
+}
 
-    .opciones-pago {
-      display: grid;
-      gap: 10px;
-      margin-top: 15px;
-    }
+.botonGris {
+  background: #e5e5e5;
+}
 
-    .opcion-pago {
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+.aviso {
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
 
-    .opcion-pago input {
-      width: auto;
-      margin-right: 8px;
-    }
+.avisoImportante {
+  background: #fff3cd;
+  border: 1px solid #e4c55d;
+}
 
-    .transferencia {
-      display: none;
-      margin-top: 20px;
-      padding: 18px;
-      background: #f6f6f6;
-      border-radius: 8px;
-    }
+.exito {
+  background: #dff2e4;
+}
 
-    .alias {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
+.integrante {
+  border-top: 1px solid #ddd;
+  padding-top: 18px;
+  margin-top: 18px;
+}
 
-    .total {
-      font-size: 23px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
+.responsable {
+  font-size: 12px;
+  background: #dce8f2;
+  padding: 5px 7px;
+  border-radius: 5px;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 8px;
-      background: #1f3c5b;
-      color: white;
-      font-size: 17px;
-      cursor: pointer;
-    }
+.precio {
+  font-size: 19px;
+  margin-top: 15px;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+.total {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 20px;
+}
 
-    .aviso {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.5;
-    }
+.oculto {
+  display: none;
+}
 
-    #mensajeFinal {
-      display: none;
-      background: #e9f5ec;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-      text-align: center;
-    }
-  </style>
+/* ADMIN */
+
+.menuAdmin {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 15px;
+}
+
+.menuItem {
+  background: white;
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  cursor: pointer;
+}
+
+.menuItem h3 {
+  margin: 5px 0;
+}
+
+.estadisticas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap: 15px;
+}
+
+.numero {
+  font-size: 30px;
+  font-weight: bold;
+  color: #173b5e;
+}
+
+.micro {
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  padding: 18px;
+  margin-top: 12px;
+}
+
+.estado {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.pendiente {
+  background: #fff0bd;
+}
+
+.aprobado {
+  background: #d7efdd;
+}
+
+.noAbordo {
+  background: #ffdada;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkAdmin {
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+td, th {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+@media(max-width:600px) {
+  table {
+    font-size: 13px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="encabezado">
-    <h1>Regreso Peregrinación a Luján</h1>
-    <p>Reserva de transporte</p>
+<!-- =========================
+     INSCRIPCIÓN PÚBLICA
+========================= -->
+
+<section id="paginaPublica">
+
+<header>
+  <div class="topbar">
+    <div>
+      <h1>Regreso Peregrinación a Luján</h1>
+      <p>Reserva de transporte</p>
+    </div>
+
+    <span class="linkAdmin" onclick="abrirLogin()">
+      Acceso interno
+    </span>
   </div>
+</header>
 
-  <main class="contenedor">
+<main class="contenedor">
 
-    <div class="tarjeta">
-      <h2>Inscripción</h2>
+<div class="tarjeta">
 
-      <p class="aviso">
-        Completá los datos para reservar tu lugar de regreso.
-        La reserva quedará confirmada únicamente una vez acreditado el pago.
-      </p>
-    </div>
+<h2>Reserva tu lugar</h2>
 
-    <!-- DESTINO -->
+<p>
+Completá el formulario para reservar tu regreso desde Luján.
+</p>
 
-    <div class="tarjeta">
-      <h2>1. Elegí tu destino</h2>
+<div class="aviso avisoImportante">
 
-      <label for="destino">Destino</label>
+<strong>IMPORTANTE</strong>
 
-      <select id="destino" onchange="actualizarPrecio()">
-        <option value="">Seleccionar destino</option>
-        <option value="12000">Capital - $12.000</option>
-        <option value="9000">La Reja - $9.000</option>
-        <option value="35000">Mendoza - $35.000</option>
-      </select>
+<p>
+La reserva tendrá una duración de <strong>24 horas</strong>.
+Dentro de ese plazo deberás realizar la transferencia y cargar
+el comprobante.
+</p>
 
-      <div class="precio">
-        Precio por persona:
-        <strong id="precioPersona">-</strong>
-      </div>
-    </div>
+<p>
+Una vez cargado el comprobante, tus lugares permanecerán
+reservados mientras verificamos el pago.
+</p>
 
+</div>
 
-    <!-- CANTIDAD -->
-
-    <div class="tarjeta">
-      <h2>2. ¿Cuántas personas viajan?</h2>
-
-      <label for="cantidad">Cantidad de pasajeros</label>
-
-      <select id="cantidad" onchange="crearPasajeros()">
-        <option value="1">1 persona</option>
-        <option value="2">2 personas</option>
-        <option value="3">3 personas</option>
-        <option value="4">4 personas</option>
-        <option value="5">5 personas</option>
-        <option value="6">6 personas</option>
-        <option value="7">7 personas</option>
-        <option value="8">8 personas</option>
-      </select>
-
-      <p class="aviso">
-        Las personas incluidas en una misma inscripción serán consideradas
-        un grupo y se intentará mantenerlas juntas en el mismo micro.
-      </p>
-    </div>
+</div>
 
 
-    <!-- RESPONSABLE -->
+<!-- DESTINO -->
 
-    <div class="tarjeta">
-      <h2>3. Datos del responsable</h2>
+<div class="tarjeta">
 
-      <label>Teléfono</label>
-      <input type="tel" id="telefono" placeholder="Ej.: 11 1234 5678">
+<h2>1. Destino</h2>
 
-      <label>Correo electrónico</label>
-      <input type="email" id="correo" placeholder="nombre@correo.com">
+<label>Seleccioná tu destino</label>
 
-      <p class="aviso">
-        A este correo enviaremos la confirmación y el QR del grupo.
-      </p>
-    </div>
+<select id="destino" onchange="actualizarPrecio()">
+
+<option value="">Seleccionar</option>
+
+<option value="9000">
+La Reja
+</option>
+
+<option value="12000">
+Capital
+</option>
+
+<option value="35000">
+Mendoza
+</option>
+
+</select>
+
+<div class="precio">
+
+Precio por persona:
+<strong id="precioPersona">-</strong>
+
+</div>
+
+</div>
 
 
-    <!-- PASAJEROS -->
+<!-- CANTIDAD -->
 
-    <div class="tarjeta">
-      <h2>4. Datos de los pasajeros</h2>
+<div class="tarjeta">
 
-      <div id="pasajeros"></div>
-    </div>
+<h2>2. Pasajeros</h2>
+
+<label>¿Cuántas personas viajan?</label>
+
+<select id="cantidad" onchange="crearPasajeros()">
+
+<option value="1">1 persona</option>
+<option value="2">2 personas</option>
+<option value="3">3 personas</option>
+<option value="4">4 personas</option>
+<option value="5">5 personas</option>
+<option value="6">6 personas</option>
+<option value="7">7 personas</option>
+<option value="8">8 personas</option>
+
+</select>
+
+<div class="aviso">
+
+Las personas cargadas dentro de una misma reserva
+serán consideradas un grupo y viajarán juntas.
+
+</div>
+
+</div>
 
 
-    <!-- PAGO -->
+<!-- RESPONSABLE -->
 
-    <div class="tarjeta">
-      <h2>5. Forma de pago</h2>
+<div class="tarjeta">
 
-      <div class="opciones-pago">
+<h2>3. Responsable de la reserva</h2>
 
-        <label class="opcion-pago">
-          <input
-            type="radio"
-            name="pago"
-            value="mercadopago"
-            onchange="cambiarPago()"
-          >
-          Mercado Pago
-        </label>
+<label>Teléfono</label>
+<input id="telefono" type="tel">
 
-        <label class="opcion-pago">
-          <input
-            type="radio"
-            name="pago"
-            value="transferencia"
-            onchange="cambiarPago()"
-          >
-          Transferencia bancaria
-        </label>
+<label>Correo electrónico</label>
+<input id="correo" type="email">
 
-      </div>
+<p>
+La confirmación y el código QR serán enviados a este correo.
+</p>
 
-      <div id="datosTransferencia" class="transferencia">
+</div>
 
-        <strong>Datos para realizar la transferencia</strong>
 
-        <p>Alias:</p>
+<!-- PERSONAS -->
 
-        <div class="alias">
-          PEREGRINACION.LUJAN
-        </div>
+<div class="tarjeta">
 
-        <p class="aviso">
-          Una vez realizada la transferencia, subí el comprobante.
-          La reserva quedará pendiente hasta que un administrador verifique
-          el pago.
-        </p>
+<h2>4. Datos de los pasajeros</h2>
 
-        <label>Comprobante de transferencia</label>
-        <input type="file" accept="image/*,.pdf">
+<div id="pasajeros"></div>
 
-      </div>
+</div>
 
-      <div class="total">
-        Total: <span id="total">$0</span>
-      </div>
 
-      <button onclick="continuarInscripcion()">
-        CONTINUAR
-      </button>
+<!-- PAGO -->
 
-      <div id="mensajeFinal">
-        <strong>✓ Datos cargados correctamente</strong>
+<div class="tarjeta">
 
-        <p>
-          Esta es una versión de prueba. Más adelante conectaremos
-          esta pantalla con el sistema de pagos, la base de datos
-          y la generación automática del QR.
-        </p>
-      </div>
+<h2>5. Transferencia</h2>
 
-    </div>
+<div class="aviso avisoImportante">
 
-  </main>
+<strong>Realizá la transferencia por el total indicado.</strong>
+
+<p>
+Podés realizarla desde Mercado Pago, home banking
+o cualquier aplicación bancaria.
+</p>
+
+<p>Alias:</p>
+
+<h2>PEREGRINACION.LUJAN</h2>
+
+<p>
+La página nunca solicitará tu contraseña bancaria,
+datos de tarjeta ni claves de Mercado Pago.
+</p>
+
+</div>
+
+
+<div class="total">
+
+Total a transferir:
+<span id="total">$0</span>
+
+</div>
+
+
+<label>Comprobante de transferencia</label>
+
+<input
+type="file"
+id="comprobante"
+accept="image/*,.pdf"
+>
+
+
+<button
+class="botonPrincipal"
+onclick="enviarReserva()"
+>
+
+ENVIAR RESERVA
+
+</button>
+
+
+<div
+id="reservaExitosa"
+class="aviso exito oculto"
+>
+
+<h3>✓ Comprobante recibido</h3>
+
+<p>
+Tu pago quedó pendiente de verificación.
+Tus lugares permanecerán reservados mientras
+revisamos el comprobante.
+</p>
+
+<p>
+Cuando el pago sea aprobado recibirás el QR
+del grupo por correo electrónico.
+</p>
+
+</div>
+
+</div>
+
+</main>
+
+</section>
+
+
+
+<!-- =========================
+LOGIN
+========================= -->
+
+<section id="login" class="oculto">
+
+<header>
+<h1>Acceso al sistema</h1>
+</header>
+
+<div class="contenedor">
+
+<div class="tarjeta">
+
+<h2>Iniciar sesión</h2>
+
+<label>Usuario</label>
+<input id="usuarioLogin">
+
+<label>Contraseña</label>
+<input id="claveLogin" type="password">
+
+<button
+class="botonPrincipal"
+onclick="iniciarSesion()"
+>
+INGRESAR
+</button>
+
+<button
+class="botonGris"
+onclick="volverInicio()"
+style="width:100%;margin-top:10px;"
+>
+VOLVER
+</button>
+
+<p style="margin-top:25px">
+
+<strong>Usuarios de prueba:</strong><br><br>
+
+general1 / prueba<br>
+general2 / prueba<br>
+admin / prueba<br>
+colaborador / prueba
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+PANEL
+========================= -->
+
+<section id="panel" class="oculto">
+
+<header>
+
+<div class="topbar">
+
+<div>
+
+<h1>Panel de administración</h1>
+
+<p id="rolActual"></p>
+
+</div>
+
+<span
+class="linkAdmin"
+onclick="cerrarSesion()"
+>
+Cerrar sesión
+</span>
+
+</div>
+
+</header>
+
+
+<div class="contenedor">
+
+
+<!-- RESUMEN -->
+
+<div id="resumenAdmin">
+
+<div class="estadisticas">
+
+<div class="tarjeta">
+
+<div class="numero">1.037</div>
+
+Pasajeros
+
+</div>
+
+
+<div class="tarjeta">
+
+<div class="numero">892</div>
+
+Pagos confirmados
+
+</div>
+
+
+<div class="tarjeta">
+
+<div class="numero">145</div>
+
+Pendientes
+
+</div>
+
+
+<div class="tarjeta">
+
+<div class="numero">18</div>
+
+Micros
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- MENU -->
+
+<div id="menuCompleto" class="menuAdmin">
+
+<div class="menuItem">
+
+<h3>🚌 Micros</h3>
+
+<p>
+Capacidad y pasajeros.
+</p>
+
+</div>
+
+
+<div class="menuItem">
+
+<h3>👥 Inscripciones</h3>
+
+<p>
+Buscar y modificar pasajeros.
+</p>
+
+</div>
+
+
+<div class="menuItem">
+
+<h3>💳 Pagos</h3>
+
+<p>
+Revisar transferencias.
+</p>
+
+</div>
+
+
+<div
+class="menuItem"
+onclick="mostrarAbordaje()"
+>
+
+<h3>📷 Abordaje</h3>
+
+<p>
+QR y búsqueda manual.
+</p>
+
+</div>
+
+
+<div
+id="configuracion"
+class="menuItem"
+>
+
+<h3>⚙️ Configuración</h3>
+
+<p>
+Destinos, precios, micros y usuarios.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- MICROS DE EJEMPLO -->
+
+<div
+id="listaMicros"
+class="tarjeta"
+style="margin-top:20px;"
+>
+
+<h2>Estado de los micros</h2>
+
+
+<div class="micro">
+
+<h3>Micro 01 — La Reja</h3>
+
+<p>
+<strong>57 / 60</strong>
+lugares asignados
+</p>
+
+<p>
+3 lugares disponibles
+</p>
+
+<p>
+Abordaron:
+<strong>41 / 57</strong>
+</p>
+
+<button class="botonGris">
+Ver pasajeros
+</button>
+
+</div>
+
+
+<div class="micro">
+
+<h3>Micro 02 — La Reja</h3>
+
+<p>
+<strong>60 / 60</strong>
+lugares asignados
+</p>
+
+<p>
+COMPLETO
+</p>
+
+<p>
+Abordaron:
+<strong>39 / 60</strong>
+</p>
+
+<button class="botonGris">
+Ver pasajeros
+</button>
+
+</div>
+
+
+<div class="micro">
+
+<h3>Micro 03 — Capital</h3>
+
+<p>
+<strong>42 / 50</strong>
+lugares asignados
+</p>
+
+<p>
+8 lugares disponibles
+</p>
+
+<p>
+Abordaron:
+<strong>30 / 42</strong>
+</p>
+
+<button class="botonGris">
+Ver pasajeros
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ABORDAJE -->
+
+<div
+id="abordaje"
+class="tarjeta oculto"
+>
+
+<h2>Control de abordaje</h2>
+
+
+<button
+class="botonPrincipal"
+onclick="simularQR()"
+>
+
+📷 ESCANEAR CÓDIGO QR
+
+</button>
+
+
+<h3 style="margin-top:30px;">
+Buscar pasajero
+</h3>
+
+
+<input
+id="buscarPasajero"
+placeholder="Nombre, apellido o DNI"
+>
+
+
+<button
+class="botonPrincipal"
+onclick="buscarPersona()"
+>
+
+BUSCAR
+
+</button>
+
+
+<div
+id="resultadoPasajero"
+class="oculto"
+style="margin-top:25px;"
+>
+
+<h3>
+Grupo Pérez
+</h3>
+
+<p>
+Micro 01 — La Reja
+</p>
+
+
+<table>
+
+<tr>
+
+<th>Pasajero</th>
+<th>Estado</th>
+<th>Acción</th>
+
+</tr>
+
+
+<tr>
+
+<td>
+María Pérez
+</td>
+
+<td id="estadoMaria">
+<span class="estado pendiente">
+PENDIENTE
+</span>
+</td>
+
+<td>
+
+<button
+class="botonVerde"
+onclick="abordo('estadoMaria')"
+>
+Abordó
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Juan Pérez
+</td>
+
+<td id="estadoJuan">
+
+<span class="estado pendiente">
+PENDIENTE
+</span>
+
+</td>
+
+<td>
+
+<button
+class="botonVerde"
+onclick="abordo('estadoJuan')"
+>
+Abordó
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Pedro Pérez
+</td>
+
+<td id="estadoPedro">
+
+<span class="estado pendiente">
+PENDIENTE
+</span>
+
+</td>
+
+<td>
+
+<button
+class="botonVerde"
+onclick="abordo('estadoPedro')"
+>
+Abordó
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 
 
 <script>
 
-  let precioActual = 0;
+let precioActual = 0;
 
 
-  function actualizarPrecio() {
+/* =====================
+INSCRIPCIÓN
+===================== */
 
-    const destino = document.getElementById("destino");
+function actualizarPrecio(){
 
-    precioActual = Number(destino.value);
+const destino =
+document.getElementById("destino");
 
-    if (precioActual === 0) {
-      document.getElementById("precioPersona").innerText = "-";
-    } else {
-      document.getElementById("precioPersona").innerText =
-        "$" + precioActual.toLocaleString("es-AR");
-    }
+precioActual =
+Number(destino.value);
 
-    actualizarTotal();
-  }
+if(precioActual){
 
+document.getElementById(
+"precioPersona"
+).innerText =
+"$" +
+precioActual.toLocaleString("es-AR");
 
-  function actualizarTotal() {
+}else{
 
-    const cantidad =
-      Number(document.getElementById("cantidad").value);
+document.getElementById(
+"precioPersona"
+).innerText = "-";
 
-    const total = precioActual * cantidad;
+}
 
-    document.getElementById("total").innerText =
-      "$" + total.toLocaleString("es-AR");
-  }
+actualizarTotal();
 
-
-  function crearPasajeros() {
-
-    const cantidad =
-      Number(document.getElementById("cantidad").value);
-
-    const contenedor =
-      document.getElementById("pasajeros");
-
-    contenedor.innerHTML = "";
-
-    for (let i = 1; i <= cantidad; i++) {
-
-      const pasajero =
-        document.createElement("div");
-
-      pasajero.className = "integrante";
-
-      pasajero.innerHTML = `
-        <h3>
-          Pasajero ${i}
-          ${i === 1
-            ? '<span class="responsable">RESPONSABLE</span>'
-            : ''}
-        </h3>
-
-        <label>Nombre</label>
-        <input type="text" placeholder="Nombre">
-
-        <label>Apellido</label>
-        <input type="text" placeholder="Apellido">
-
-        <label>DNI</label>
-        <input type="text" placeholder="DNI">
-      `;
-
-      contenedor.appendChild(pasajero);
-    }
-
-    actualizarTotal();
-  }
+}
 
 
-  function cambiarPago() {
+function actualizarTotal(){
 
-    const pago =
-      document.querySelector(
-        'input[name="pago"]:checked'
-      );
+const cantidad =
+Number(
+document.getElementById("cantidad").value
+);
 
-    const transferencia =
-      document.getElementById(
-        "datosTransferencia"
-      );
+const total =
+precioActual * cantidad;
 
-    if (
-      pago &&
-      pago.value === "transferencia"
-    ) {
-      transferencia.style.display = "block";
-    } else {
-      transferencia.style.display = "none";
-    }
-  }
+document.getElementById(
+"total"
+).innerText =
+"$" +
+total.toLocaleString("es-AR");
+
+}
 
 
-  function continuarInscripcion() {
+function crearPasajeros(){
 
-    const destino =
-      document.getElementById("destino").value;
+const cantidad =
+Number(
+document.getElementById("cantidad").value
+);
 
-    if (!destino) {
-      alert("Primero tenés que elegir un destino.");
-      return;
-    }
+const contenedor =
+document.getElementById("pasajeros");
 
-    const pago =
-      document.querySelector(
-        'input[name="pago"]:checked'
-      );
-
-    if (!pago) {
-      alert("Elegí una forma de pago.");
-      return;
-    }
-
-    document.getElementById(
-      "mensajeFinal"
-    ).style.display = "block";
-  }
+contenedor.innerHTML = "";
 
 
-  crearPasajeros();
+for(let i=1;i<=cantidad;i++){
+
+const div =
+document.createElement("div");
+
+div.className =
+"integrante";
+
+
+div.innerHTML = `
+
+<h3>
+
+Pasajero ${i}
+
+${i === 1
+? '<span class="responsable">RESPONSABLE</span>'
+: ''}
+
+</h3>
+
+<label>Nombre</label>
+
+<input type="text">
+
+
+<label>Apellido</label>
+
+<input type="text">
+
+
+<label>DNI</label>
+
+<input type="text">
+
+`;
+
+contenedor.appendChild(div);
+
+}
+
+actualizarTotal();
+
+}
+
+
+
+function enviarReserva(){
+
+const destino =
+document.getElementById(
+"destino"
+).value;
+
+const comprobante =
+document.getElementById(
+"comprobante"
+).files.length;
+
+
+if(!destino){
+
+alert(
+"Seleccioná un destino."
+);
+
+return;
+
+}
+
+
+if(!comprobante){
+
+alert(
+"Tenés que cargar el comprobante de transferencia."
+);
+
+return;
+
+}
+
+
+document.getElementById(
+"reservaExitosa"
+).classList.remove("oculto");
+
+}
+
+
+
+/* =====================
+LOGIN
+===================== */
+
+
+const usuarios = {
+
+general1:{
+clave:"prueba",
+rol:"ADMINISTRADOR GENERAL"
+},
+
+general2:{
+clave:"prueba",
+rol:"ADMINISTRADOR GENERAL"
+},
+
+admin:{
+clave:"prueba",
+rol:"ADMINISTRADOR"
+},
+
+colaborador:{
+clave:"prueba",
+rol:"COLABORADOR"
+}
+
+};
+
+
+function abrirLogin(){
+
+document.getElementById(
+"paginaPublica"
+).classList.add("oculto");
+
+document.getElementById(
+"login"
+).classList.remove("oculto");
+
+}
+
+
+function volverInicio(){
+
+document.getElementById(
+"login"
+).classList.add("oculto");
+
+document.getElementById(
+"paginaPublica"
+).classList.remove("oculto");
+
+}
+
+
+function iniciarSesion(){
+
+const usuario =
+document.getElementById(
+"usuarioLogin"
+).value;
+
+const clave =
+document.getElementById(
+"claveLogin"
+).value;
+
+
+if(
+!usuarios[usuario] ||
+usuarios[usuario].clave !== clave
+){
+
+alert(
+"Usuario o contraseña incorrectos."
+);
+
+return;
+
+}
+
+
+const rol =
+usuarios[usuario].rol;
+
+
+document.getElementById(
+"login"
+).classList.add("oculto");
+
+document.getElementById(
+"panel"
+).classList.remove("oculto");
+
+
+document.getElementById(
+"rolActual"
+).innerText =
+usuario + " — " + rol;
+
+
+/* PERMISOS */
+
+
+if(
+rol ===
+"ADMINISTRADOR GENERAL"
+){
+
+document.getElementById(
+"menuCompleto"
+).style.display = "grid";
+
+document.getElementById(
+"configuracion"
+).style.display = "block";
+
+document.getElementById(
+"listaMicros"
+).style.display = "block";
+
+document.getElementById(
+"resumenAdmin"
+).style.display = "block";
+
+}
+
+
+if(
+rol ===
+"ADMINISTRADOR"
+){
+
+document.getElementById(
+"menuCompleto"
+).style.display = "grid";
+
+document.getElementById(
+"configuracion"
+).style.display = "none";
+
+document.getElementById(
+"listaMicros"
+).style.display = "block";
+
+document.getElementById(
+"resumenAdmin"
+).style.display = "block";
+
+}
+
+
+if(
+rol ===
+"COLABORADOR"
+){
+
+document.getElementById(
+"menuCompleto"
+).style.display = "none";
+
+document.getElementById(
+"listaMicros"
+).style.display = "none";
+
+document.getElementById(
+"resumenAdmin"
+).style.display = "none";
+
+mostrarAbordaje();
+
+}
+
+}
+
+
+
+/* =====================
+ABORDAJE
+===================== */
+
+
+function mostrarAbordaje(){
+
+document.getElementById(
+"abordaje"
+).classList.remove("oculto");
+
+}
+
+
+function buscarPersona(){
+
+document.getElementById(
+"resultadoPasajero"
+).classList.remove("oculto");
+
+}
+
+
+function simularQR(){
+
+document.getElementById(
+"resultadoPasajero"
+).classList.remove("oculto");
+
+alert(
+"QR leído correctamente. Grupo Pérez encontrado."
+);
+
+}
+
+
+function abordo(id){
+
+document.getElementById(
+id
+).innerHTML =
+'<span class="estado aprobado">ABORDÓ</span>';
+
+}
+
+
+
+/* =====================
+SALIR
+===================== */
+
+
+function cerrarSesion(){
+
+document.getElementById(
+"panel"
+).classList.add("oculto");
+
+document.getElementById(
+"abordaje"
+).classList.add("oculto");
+
+document.getElementById(
+"paginaPublica"
+).classList.remove("oculto");
+
+}
+
+crearPasajeros();
 
 </script>
 
